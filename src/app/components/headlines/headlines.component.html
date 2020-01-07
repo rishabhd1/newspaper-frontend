@@ -1,1 +1,13 @@
-<p>headlines works!</p>
+<mat-tab-group mat-align-tabs="center" [backgroundColor]="'primary'">
+  <mat-tab label="Headlines">
+    <mat-list>
+      <div class="news-list" *ngFor="let item of arr">
+        <mat-list-item (click)="itemList()">{{ item }}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-tab>
+  <mat-tab label="Business"> Content 2 </mat-tab>
+  <mat-tab label="Sports"> Content 3 </mat-tab>
+  <mat-tab label="Entertainment"> Content 4 </mat-tab>
+</mat-tab-group>

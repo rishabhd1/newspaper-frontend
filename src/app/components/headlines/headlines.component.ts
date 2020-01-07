@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./headlines.component.scss']
 })
 export class HeadlinesComponent implements OnInit {
+  arr: Array<string> = ['a', 'b', 'c'];
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  itemList() {
+    console.log('HERE');
+  }
 }
