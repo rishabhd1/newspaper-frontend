@@ -3,6 +3,7 @@ export interface News {
   host: string;
   category: string;
   headline: string;
+  image: string;
   url: string;
   date: string;
 }
