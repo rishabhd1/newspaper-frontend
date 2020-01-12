@@ -2,13 +2,14 @@
   <mat-tab label="Headlines">
     <mat-list>
       <div class="news-list" *ngFor="let item of arr">
-        <mat-list-item (click)="itemList()">{{ item }}</mat-list-item>
+        <a mat-list-item routerLink=".">{{ item }}</a>
         <button mat-stroked-button>SAVE</button>
         <mat-divider></mat-divider>
       </div>
     </mat-list>
   </mat-tab>
-  <mat-tab label="Business"> Content 2 </mat-tab>
-  <mat-tab label="Sports"> Content 3 </mat-tab>
-  <mat-tab label="Entertainment"> Content 4 </mat-tab>
+  <mat-tab label="Business">Content 2</mat-tab>
+  <mat-tab label="Sports">Content 3</mat-tab>
+  <mat-tab label="Entertainment">Content 4</mat-tab>
+  <mat-tab label="Saved">Content 5</mat-tab>
 </mat-tab-group>
