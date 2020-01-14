@@ -2,7 +2,7 @@
   <mat-tab label="Headlines">
     <mat-list>
       <div class="news-list" *ngFor="let item of news">
-        <mat-list-item (click)="openNews(item.url)">{{
+        <mat-list-item (click)="openNews(item.url, item._id)">{{
           item.headline
         }}</mat-list-item>
         <button mat-stroked-button>SAVE</button>
@@ -13,7 +13,7 @@
   <mat-tab label="Business">
     <mat-list>
       <div class="news-list" *ngFor="let item of businsessNews">
-        <mat-list-item (click)="openNews(item.url)">{{
+        <mat-list-item (click)="openNews(item.url, item._id)">{{
           item.headline
         }}</mat-list-item>
         <button mat-stroked-button>SAVE</button>
@@ -24,7 +24,7 @@
   <mat-tab label="Sports">
     <mat-list>
       <div class="news-list" *ngFor="let item of sportsNews">
-        <mat-list-item (click)="openNews(item.url)">{{
+        <mat-list-item (click)="openNews(item.url, item._id)">{{
           item.headline
         }}</mat-list-item>
         <button mat-stroked-button>SAVE</button>
@@ -35,7 +35,7 @@
   <mat-tab label="Entertainment">
     <mat-list>
       <div class="news-list" *ngFor="let item of entertainmentNews">
-        <mat-list-item (click)="openNews(item.url)">{{
+        <mat-list-item (click)="openNews(item.url, item._id)">{{
           item.headline
         }}</mat-list-item>
         <button mat-stroked-button>SAVE</button>

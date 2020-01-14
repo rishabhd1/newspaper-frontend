@@ -25,4 +25,8 @@ export class NewsService {
   getEntertainmentNews(): Observable<AllNews> {
     return this.http.get<AllNews>('api/entertainment-news');
   }
+
+  increamentClickCount(id: string): Observable<any> {
+    return this.http.get<any>(`api/click-count/${id}`);
+  }
 }

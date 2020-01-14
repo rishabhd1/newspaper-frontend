@@ -53,7 +53,8 @@ export class HeadlinesComponent implements OnInit {
     });
   }
 
-  openNews(URL: string) {
+  openNews(URL: string, id: string) {
     window.open(URL, '_blank');
+    this.allNewsService.increamentClickCount(id).subscribe();
   }
 }
