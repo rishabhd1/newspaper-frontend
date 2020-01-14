@@ -6,4 +6,7 @@ export interface News {
   image: string;
   url: string;
   date: string;
+  clickCount: number;
+  createdAt: Date;
+  archived: boolean;
 }
