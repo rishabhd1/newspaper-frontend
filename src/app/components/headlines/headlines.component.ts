@@ -15,6 +15,7 @@ export class HeadlinesComponent implements OnInit {
   businsessNews: Array<News>;
   sportsNews: Array<News>;
   entertainmentNews: Array<News>;
+  mostViewedNews: Array<News>;
 
   constructor(private allNewsService: NewsService) {}
 
@@ -23,6 +24,7 @@ export class HeadlinesComponent implements OnInit {
     this.getBusinessNews();
     this.getSportsNews();
     this.getEntertainmentNews();
+    this.getMostViewedNews();
   }
 
   getAllNews() {
@@ -50,6 +52,13 @@ export class HeadlinesComponent implements OnInit {
     this.allNewsService.getEntertainmentNews().subscribe(response => {
       this.allNews = response;
       this.entertainmentNews = this.allNews.body;
+    });
+  }
+
+  getMostViewedNews() {
+    this.allNewsService.getMostViewedNews().subscribe(response => {
+      this.allNews = response;
+      this.mostViewedNews = this.allNews.body;
     });
   }
 

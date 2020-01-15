@@ -29,4 +29,8 @@ export class NewsService {
   increamentClickCount(id: string): Observable<any> {
     return this.http.get<any>(`api/click-count/${id}`);
   }
+
+  getMostViewedNews(): Observable<AllNews> {
+    return this.http.get<AllNews>('api/most-viewed-news');
+  }
 }
