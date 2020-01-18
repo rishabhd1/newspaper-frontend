@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
 import { HeadlinesComponent } from './components/headlines/headlines.component';
+import { NewsListComponent } from './components/news-list/news-list.component';
 
 @NgModule({
-  declarations: [AppComponent, HeadlinesComponent],
+  declarations: [AppComponent, HeadlinesComponent, NewsListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
