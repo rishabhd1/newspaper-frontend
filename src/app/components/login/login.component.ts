@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+
 import { AuthService } from '../../services/auth.service';
+import { Auth } from '../../models/Auth';
 
 import {
   MatDialog,
@@ -67,6 +69,12 @@ export class LoginComponent implements OnInit {
       if (response.status === 'success') {
         this.otpSent = false;
         this.dialogRef.close();
+        const auth: Auth = {
+          email: this.email.value,
+          token: response.body,
+          isAuthenticated: true
+        };
+        localStorage.setItem('auth', JSON.stringify(auth));
         this.isLoading = false;
       }
     });
