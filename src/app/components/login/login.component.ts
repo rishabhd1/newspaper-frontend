@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   otp = new FormControl('', [Validators.required]);
   otpSent = false;
+  isLoading = false;
 
   constructor(
     private dialogRef: MatDialogRef<LoginComponent>,
@@ -40,6 +41,8 @@ export class LoginComponent implements OnInit {
   }
 
   getOTP() {
+    this.isLoading = true;
+
     const sendOTPPayload = {
       email: this.email.value
     };
@@ -47,11 +50,14 @@ export class LoginComponent implements OnInit {
     this.authService.sendOTP(sendOTPPayload).subscribe(response => {
       if (response.status === 'success') {
         this.otpSent = true;
+        this.isLoading = false;
       }
     });
   }
 
   verify() {
+    this.isLoading = true;
+
     const verifyPayload = {
       email: this.email.value,
       otp: this.otp.value
@@ -61,6 +67,7 @@ export class LoginComponent implements OnInit {
       if (response.status === 'success') {
         this.otpSent = false;
         this.dialogRef.close();
+        this.isLoading = false;
       }
     });
   }

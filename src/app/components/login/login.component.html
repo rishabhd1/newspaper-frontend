@@ -10,16 +10,17 @@
     <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }}</mat-error>
   </mat-form-field>
   <mat-form-field *ngIf="otpSent">
-    <input
-      matInput
-      placeholder="Enter OTP"
-      [formControl]="otp"
-      required
-    />
+    <input matInput placeholder="Enter OTP" [formControl]="otp" required />
     <mat-error *ngIf="otp.invalid">{{ getOTPErrorMessage() }}</mat-error>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button *ngIf="!otpSent" mat-button (click)="getOTP()">GET OTP</button>
-  <button *ngIf="otpSent" mat-button (click)="verify()">VERIFY</button>
+  <button *ngIf="!otpSent" mat-button (click)="getOTP()">
+    <span *ngIf="!isLoading">GET OTP</span>
+    <mat-spinner *ngIf="isLoading" [diameter]="18"></mat-spinner>
+  </button>
+  <button *ngIf="otpSent" mat-button (click)="verify()">
+    <span *ngIf="!isLoading">GET OTP</span>
+    <mat-spinner *ngIf="isLoading" [diameter]="18"></mat-spinner>
+  </button>
 </div>
