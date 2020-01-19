@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 import {
   MatDialog,
@@ -14,23 +15,53 @@ import {
 })
 export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
+  otp = new FormControl('', [Validators.required]);
+  otpSent = false;
 
   constructor(
-    public dialogRef: MatDialogRef<LoginComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    private dialogRef: MatDialogRef<LoginComponent>,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {}
 
-  getErrorMessage() {
+  getEmailErrorMessage() {
     return this.email.hasError('required')
-      ? 'You must enter a value'
+      ? 'Email is Required'
       : this.email.hasError('email')
-      ? 'Not a valid email'
+      ? 'Not a Valid Email'
       : '';
   }
 
-  getOTP(): void {
-    this.dialogRef.close();
+  getOTPErrorMessage() {
+    return this.email.hasError('required')
+      ? 'OTP is Required'
+      : '';
+  }
+
+  getOTP() {
+    const sendOTPPayload = {
+      email: this.email.value
+    };
+
+    this.authService.sendOTP(sendOTPPayload).subscribe(response => {
+      if (response.status === 'success') {
+        this.otpSent = true;
+      }
+    });
+  }
+
+  verify() {
+    const verifyPayload = {
+      email: this.email.value,
+      otp: this.otp.value
+    };
+
+    this.authService.verify(verifyPayload).subscribe(response => {
+      if (response.status === 'success') {
+        this.otpSent = false;
+        this.dialogRef.close();
+      }
+    });
   }
 }

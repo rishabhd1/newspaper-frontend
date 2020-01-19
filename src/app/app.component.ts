@@ -12,12 +12,11 @@ import { MatDialog } from '@angular/material/dialog';
 export class AppComponent {
   title = 'newspaper-frontend';
 
-  constructor(public dialog: MatDialog) {}
+  constructor(private dialog: MatDialog) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
-      width: '250px',
-      data: { name: 'Rishabh' }
+      width: '250px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
