@@ -4,15 +4,12 @@
     <span class="example-spacer"></span>
     <mat-icon
       class="example-icon"
-      aria-hidden="false"
-      aria-label="Example user verified icon"
       [matMenuTriggerFor]="menu"
       >more_vert</mat-icon
     >
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Saved</button>
+      <button mat-menu-item (click)="openDialog()">Profile</button>
       <button mat-menu-item>Settings</button>
-      <button mat-menu-item>Profile</button>
     </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>

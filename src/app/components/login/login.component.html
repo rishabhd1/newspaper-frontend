@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>LOGIN</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Enter your email"
+      [formControl]="email"
+      required
+    />
+    <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="getOTP()">GET OTP</button>
+</div>
