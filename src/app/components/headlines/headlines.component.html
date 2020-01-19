@@ -1,27 +1,48 @@
-<mat-tab-group mat-align-tabs="center" [backgroundColor]="'primary'">
-  <mat-tab label="Headlines">
-    <ng-template matTabContent>
-      <app-news-list [category]="'allNews'"></app-news-list>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Business">
-    <ng-template matTabContent>
-      <app-news-list [category]="'business'"></app-news-list>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Sports">
-    <ng-template matTabContent>
-      <app-news-list [category]="'sports'"></app-news-list>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Entertainment">
-    <ng-template matTabContent>
-      <app-news-list [category]="'entertainment'"></app-news-list>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Most Viewed">
-    <ng-template matTabContent>
-      <app-news-list [category]="'mostViewed'"></app-news-list>
-    </ng-template>
-  </mat-tab>
-</mat-tab-group>
+<div class="headlines">
+  <mat-tab-group mat-align-tabs="center" [backgroundColor]="'primary'">
+    <mat-tab label="Headlines">
+      <ng-template matTabContent>
+        <app-news-list [category]="'allNews'"></app-news-list>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Business">
+      <ng-template matTabContent>
+        <app-news-list [category]="'business'"></app-news-list>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Sports">
+      <ng-template matTabContent>
+        <app-news-list [category]="'sports'"></app-news-list>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Entertainment">
+      <ng-template matTabContent>
+        <app-news-list [category]="'entertainment'"></app-news-list>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Most Viewed">
+      <ng-template matTabContent>
+        <app-news-list [category]="'mostViewed'"></app-news-list>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div class="filter">
+    <button mat-button [matMenuTriggerFor]="filter">Filter</button>
+
+    <mat-menu #filter="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="publisher">Publisher</button>
+      <button mat-menu-item [matMenuTriggerFor]="category">Category</button>
+    </mat-menu>
+
+    <mat-menu #publisher="matMenu">
+      <mat-checkbox>Times Of India</mat-checkbox>
+    </mat-menu>
+
+    <mat-menu #category="matMenu">
+      <mat-checkbox>Business</mat-checkbox>
+      <mat-checkbox>Sports</mat-checkbox>
+      <mat-checkbox>Entertainment</mat-checkbox>
+    </mat-menu>
+  </div>
+</div>
