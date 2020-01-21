@@ -20,7 +20,7 @@
     <mat-spinner *ngIf="isLoading" [diameter]="18"></mat-spinner>
   </button>
   <button *ngIf="otpSent" mat-button (click)="verify()">
-    <span *ngIf="!isLoading">GET OTP</span>
+    <span *ngIf="!isLoading">VERIFY</span>
     <mat-spinner *ngIf="isLoading" [diameter]="18"></mat-spinner>
   </button>
 </div>

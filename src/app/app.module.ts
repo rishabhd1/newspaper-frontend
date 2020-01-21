@@ -12,13 +12,15 @@ import { MaterialModule } from './material/material.module';
 import { HeadlinesComponent } from './components/headlines/headlines.component';
 import { NewsListComponent } from './components/news-list/news-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeadlinesComponent,
     NewsListComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
