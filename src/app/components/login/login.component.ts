@@ -76,7 +76,6 @@ export class LoginComponent implements OnInit {
         };
         localStorage.setItem('auth', JSON.stringify(auth));
         this.isLoading = false;
-        window.location.reload();
       }
     });
   }

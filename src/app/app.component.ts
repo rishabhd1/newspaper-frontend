@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 
 import { Auth } from './models/Auth';
 import { LoginComponent } from './components/login/login.component';
@@ -10,13 +10,15 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
   title = 'newspaper-frontend';
   isAuthenticated = false;
 
   constructor(private dialog: MatDialog) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngDoCheck() {
     const user: Auth = JSON.parse(localStorage.getItem('auth'));
     if (user) {
       this.isAuthenticated = user.isAuthenticated;
