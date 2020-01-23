@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AllNews } from '../models/AllNews';
@@ -35,6 +35,12 @@ export class NewsService {
   }
 
   saveNews(payload: any): Observable<any> {
-    return this.http.post<any>('api/save-news', payload);
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-Auth-Token': payload.token
+      })
+    };
+    return this.http.get<any>(`api/save-news/${payload.mongoID}`, requestOptions);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { NewsService } from '../../services/news.service';
 import { AllNews } from 'src/app/models/AllNews';
@@ -19,8 +20,13 @@ export class NewsListComponent implements OnInit {
   allNews: AllNews;
   news: Array<News>;
   user: Auth;
+  savedNews: Array<string>;
 
-  constructor(private allNewsService: NewsService, private dialog: MatDialog) {}
+  constructor(
+    private allNewsService: NewsService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     switch (this.category) {
@@ -49,6 +55,12 @@ export class NewsListComponent implements OnInit {
     }
 
     this.user = JSON.parse(localStorage.getItem('auth'));
+  }
+
+  savedSnackBar() {
+    this.snackBar.open('STORY SAVED', 'OK', {
+      duration: 2000
+    });
   }
 
   getAllNews() {
@@ -96,15 +108,14 @@ export class NewsListComponent implements OnInit {
       this.openDialog();
     } else {
       const payload = {
-        email: this.user.email,
+        token: this.user.token,
         mongoID: id
       };
       this.allNewsService.saveNews(payload).subscribe(response => {
         if (response.status === 'success') {
-          console.log('Saved');
+          this.savedSnackBar();
         }
       });
-      console.log(`HERE: ${id} and ${this.user.email}`);
     }
   }
 
