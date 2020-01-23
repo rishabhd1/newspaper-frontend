@@ -1,8 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { MatDialog } from '@angular/material/dialog';
+
 import { NewsService } from '../../services/news.service';
 import { AllNews } from 'src/app/models/AllNews';
 import { News } from 'src/app/models/News';
+import { Auth } from 'src/app/models/Auth';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-news-list',
@@ -14,8 +18,9 @@ export class NewsListComponent implements OnInit {
 
   allNews: AllNews;
   news: Array<News>;
+  user: Auth;
 
-  constructor(private allNewsService: NewsService) { }
+  constructor(private allNewsService: NewsService, private dialog: MatDialog) {}
 
   ngOnInit() {
     switch (this.category) {
@@ -42,6 +47,8 @@ export class NewsListComponent implements OnInit {
       default:
         break;
     }
+
+    this.user = JSON.parse(localStorage.getItem('auth'));
   }
 
   getAllNews() {
@@ -82,5 +89,32 @@ export class NewsListComponent implements OnInit {
   openNews(URL: string, id: string) {
     window.open(URL, '_blank');
     this.allNewsService.increamentClickCount(id).subscribe();
+  }
+
+  saveNews(id: string) {
+    if (!this.user || !this.user.email) {
+      this.openDialog();
+    } else {
+      const payload = {
+        email: this.user.email,
+        mongoID: id
+      };
+      this.allNewsService.saveNews(payload).subscribe(response => {
+        if (response.status === 'success') {
+          console.log('Saved');
+        }
+      });
+      console.log(`HERE: ${id} and ${this.user.email}`);
+    }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      window.location.reload();
+    });
   }
 }

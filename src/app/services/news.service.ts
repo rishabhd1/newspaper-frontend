@@ -33,4 +33,8 @@ export class NewsService {
   getMostViewedNews(): Observable<AllNews> {
     return this.http.get<AllNews>('api/most-viewed-news');
   }
+
+  saveNews(payload: any): Observable<any> {
+    return this.http.post<any>('api/save-news', payload);
+  }
 }
