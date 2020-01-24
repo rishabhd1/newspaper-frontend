@@ -134,7 +134,9 @@ export class NewsListComponent implements OnInit {
       };
       this.allNewsService.getSavedNews(payload).subscribe(response => {
         if (response.status === 'success') {
-          this.savedNews = response.body;
+          if (response.body !== null) {
+            this.savedNews = response.body;
+          }
         }
       });
     }
