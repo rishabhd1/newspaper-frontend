@@ -55,6 +55,7 @@ export class NewsListComponent implements OnInit {
     }
 
     this.user = JSON.parse(localStorage.getItem('auth'));
+    this.getSavedNews();
   }
 
   savedSnackBar() {
@@ -114,6 +115,20 @@ export class NewsListComponent implements OnInit {
       this.allNewsService.saveNews(payload).subscribe(response => {
         if (response.status === 'success') {
           this.savedSnackBar();
+          this.savedNews.push(id);
+        }
+      });
+    }
+  }
+
+  getSavedNews() {
+    if (this.user && this.user.token) {
+      const payload = {
+        token: this.user.token
+      };
+      this.allNewsService.getSavedNews(payload).subscribe(response => {
+        if (response.status === 'success') {
+          this.savedNews = response.body;
         }
       });
     }

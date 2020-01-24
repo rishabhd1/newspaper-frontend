@@ -43,4 +43,14 @@ export class NewsService {
     };
     return this.http.get<any>(`api/save-news/${payload.mongoID}`, requestOptions);
   }
+
+  getSavedNews(payload: any): Observable<any> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-Auth-Token': payload.token
+      })
+    };
+    return this.http.get<any>('api/saved-news', requestOptions);
+  }
 }

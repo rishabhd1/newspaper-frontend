@@ -3,7 +3,19 @@
     <mat-list-item (click)="openNews(item.url, item._id)">
       {{ item.headline }}
     </mat-list-item>
-    <button mat-stroked-button (click)="saveNews(item._id)">SAVE</button>
+    <button
+      mat-stroked-button
+      *ngIf="savedNews.includes(item._id)"
+    >
+      REMOVE FROM SAVED
+    </button>
+    <button
+      mat-stroked-button
+      (click)="saveNews(item._id)"
+      *ngIf="!savedNews.includes(item._id)"
+    >
+      SAVE
+    </button>
     <mat-divider></mat-divider>
   </div>
 </mat-list>
