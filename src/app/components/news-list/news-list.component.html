@@ -5,6 +5,7 @@
     </mat-list-item>
     <button
       mat-stroked-button
+      (click)="removeNews(item._id)"
       *ngIf="savedNews.includes(item._id)"
     >
       REMOVE FROM SAVED

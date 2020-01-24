@@ -20,7 +20,7 @@ export class NewsListComponent implements OnInit {
   allNews: AllNews;
   news: Array<News>;
   user: Auth;
-  savedNews: Array<string>;
+  savedNews: Array<string> = [];
 
   constructor(
     private allNewsService: NewsService,
@@ -60,6 +60,12 @@ export class NewsListComponent implements OnInit {
 
   savedSnackBar() {
     this.snackBar.open('STORY SAVED', 'OK', {
+      duration: 2000
+    });
+  }
+
+  removeSnackBar() {
+    this.snackBar.open('STORY REMOVED FROM SAVED', 'OK', {
       duration: 2000
     });
   }
@@ -105,7 +111,7 @@ export class NewsListComponent implements OnInit {
   }
 
   saveNews(id: string) {
-    if (!this.user || !this.user.email) {
+    if (!this.user || !this.user.token) {
       this.openDialog();
     } else {
       const payload = {
@@ -114,8 +120,8 @@ export class NewsListComponent implements OnInit {
       };
       this.allNewsService.saveNews(payload).subscribe(response => {
         if (response.status === 'success') {
-          this.savedSnackBar();
           this.savedNews.push(id);
+          this.savedSnackBar();
         }
       });
     }
@@ -129,6 +135,24 @@ export class NewsListComponent implements OnInit {
       this.allNewsService.getSavedNews(payload).subscribe(response => {
         if (response.status === 'success') {
           this.savedNews = response.body;
+        }
+      });
+    }
+  }
+
+  removeNews(id: string) {
+    if (this.user || this.user.token) {
+      const payload = {
+        token: this.user.token,
+        mongoID: id
+      };
+      this.allNewsService.removeNews(payload).subscribe(response => {
+        if (response.status === 'success') {
+          const index = this.savedNews.indexOf(id);
+          if (index !== -1) {
+            this.savedNews.splice(index, 1);
+            this.removeSnackBar();
+          }
         }
       });
     }
