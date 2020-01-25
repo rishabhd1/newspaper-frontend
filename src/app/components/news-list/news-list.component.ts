@@ -29,6 +29,8 @@ export class NewsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('auth'));
+
     switch (this.category) {
       case 'allNews':
         this.getAllNews();
@@ -50,11 +52,14 @@ export class NewsListComponent implements OnInit {
         this.getMostViewedNews();
         break;
 
+      case 'saved':
+        this.getSavedNewsDetails();
+        break;
+
       default:
         break;
     }
 
-    this.user = JSON.parse(localStorage.getItem('auth'));
     this.getSavedNews();
   }
 
@@ -103,6 +108,19 @@ export class NewsListComponent implements OnInit {
       this.allNews = response;
       this.news = this.allNews.body;
     });
+  }
+
+  getSavedNewsDetails() {
+    if (this.user && this.user.token) {
+      const payload = {
+        token: this.user.token
+      };
+      this.allNewsService.getSavedNewsDetails(payload).subscribe(response => {
+        if (response.status === 'success') {
+          this.news = response.body;
+        }
+      });
+    }
   }
 
   openNews(URL: string, id: string) {

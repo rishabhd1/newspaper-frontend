@@ -25,6 +25,11 @@
         <app-news-list [category]="'mostViewed'"></app-news-list>
       </ng-template>
     </mat-tab>
+    <mat-tab label="Saved">
+      <ng-template matTabContent>
+        <app-news-list [category]="'saved'"></app-news-list>
+      </ng-template>
+    </mat-tab>
   </mat-tab-group>
 
   <div class="filter">

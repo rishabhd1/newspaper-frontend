@@ -34,6 +34,16 @@ export class NewsService {
     return this.http.get<AllNews>('api/most-viewed-news');
   }
 
+  getSavedNewsDetails(payload: any): Observable<AllNews> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-Auth-Token': payload.token
+      })
+    };
+    return this.http.get<AllNews>('api/get-saved-news-details', requestOptions);
+  }
+
   saveNews(payload: any): Observable<any> {
     const requestOptions = {
       headers: new HttpHeaders({
