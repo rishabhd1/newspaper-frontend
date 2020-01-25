@@ -1,0 +1,20 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.mat-form-field {
+  width: 350px;
+  margin-bottom: 10px;
+}
+
+.action-buttons {
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

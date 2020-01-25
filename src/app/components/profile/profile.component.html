@@ -1,1 +1,23 @@
-<button mat-button (click)="logout()">LOGOUT</button>
+<form class="user-form">
+  <mat-form-field>
+    <input matInput placeholder="Name" name="name" [(ngModel)]="name" />
+    <mat-hint *ngIf="!isRequired(name)">
+      Name is <strong>required</strong>
+    </mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email" name="email" [(ngModel)]="email" />
+    <mat-hint *ngIf="isRequired(email) && !isEmail(email)">
+      Please enter a valid email address
+    </mat-hint>
+    <mat-hint *ngIf="!isRequired(email)">
+      Email is <strong>required</strong>
+    </mat-hint>
+  </mat-form-field>
+  <div class="action-buttons">
+    <button mat-stroked-button color="primary" (click)="update()">
+      UPDATE
+    </button>
+    <button mat-stroked-button color="warn" (click)="logout()">LOGOUT</button>
+  </div>
+</form>
