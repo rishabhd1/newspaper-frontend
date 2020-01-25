@@ -172,6 +172,7 @@ export class NewsListComponent implements OnInit {
           if (index !== -1) {
             this.savedNews.splice(index, 1);
             this.removeSnackBar();
+            this.getSavedNewsDetails();
           }
         }
       });
