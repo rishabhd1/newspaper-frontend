@@ -31,6 +31,12 @@ export class NewsListComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('auth'));
 
+    this.getNews();
+
+    this.getSavedNews();
+  }
+
+  getNews() {
     switch (this.category) {
       case 'allNews':
         this.getAllNews();
@@ -59,8 +65,6 @@ export class NewsListComponent implements OnInit {
       default:
         break;
     }
-
-    this.getSavedNews();
   }
 
   savedSnackBar() {
@@ -172,7 +176,7 @@ export class NewsListComponent implements OnInit {
           if (index !== -1) {
             this.savedNews.splice(index, 1);
             this.removeSnackBar();
-            this.getSavedNewsDetails();
+            this.getNews();
           }
         }
       });
@@ -185,7 +189,7 @@ export class NewsListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      window.location.reload();
+      this.user = JSON.parse(localStorage.getItem('auth'));
     });
   }
 }
