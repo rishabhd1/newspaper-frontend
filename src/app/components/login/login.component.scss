@@ -1,0 +1,14 @@
+.login-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.login-dialog .mat-dialog-content {
+  width: 100%;
+}
+
+.login-dialog .mat-dialog-content .mat-form-field {
+  width: 100%;
+}
