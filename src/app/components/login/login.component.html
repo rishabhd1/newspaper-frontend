@@ -6,12 +6,19 @@
         matInput
         placeholder="Enter your email"
         [formControl]="email"
+        (keyup.enter)="getOTP()"
         required
       />
       <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }}</mat-error>
     </mat-form-field>
     <mat-form-field *ngIf="otpSent">
-      <input matInput placeholder="Enter OTP" [formControl]="otp" required />
+      <input
+        matInput
+        placeholder="Enter OTP"
+        [formControl]="otp"
+        (keyup.enter)="verify()"
+        required
+      />
       <mat-error *ngIf="otp.invalid">{{ getOTPErrorMessage() }}</mat-error>
     </mat-form-field>
   </div>
