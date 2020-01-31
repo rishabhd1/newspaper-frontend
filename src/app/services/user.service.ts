@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/User';
+import { apiURL } from '../helper/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService {
         'X-Auth-Token': payload.token
       })
     };
-    return this.http.get<any>('api/user', requestOptions);
+    return this.http.get<any>(`${apiURL}api/user`, requestOptions);
   }
 
   updateUser(payload: any): Observable<any> {
@@ -26,6 +27,6 @@ export class UserService {
         'X-Auth-Token': payload.token
       })
     };
-    return this.http.post<any>('api/update-user', payload, requestOptions)
+    return this.http.post<any>(`${apiURL}api/update-user`, payload, requestOptions)
   }
 }
