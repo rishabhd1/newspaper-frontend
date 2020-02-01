@@ -12,3 +12,8 @@
 .login-dialog .mat-dialog-content .mat-form-field {
   width: 100%;
 }
+
+.mat-dialog-actions .mat-button {
+  display: flex;
+  justify-content: center;
+}
