@@ -4,6 +4,7 @@ import { Auth } from 'src/app/models/Auth';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { apiURL } from 'src/app/helper/constants';
 
 @Component({
   selector: 'app-profile',
@@ -70,7 +71,7 @@ export class ProfileComponent implements OnInit, OnChanges {
 
   logout() {
     localStorage.removeItem('auth');
-    window.location.href = 'http://localhost:4200';
+    window.location.href = apiURL;
   }
 
   updateSnackBar() {

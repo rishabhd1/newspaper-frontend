@@ -6,7 +6,7 @@
     </mat-hint>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Email" name="email" [(ngModel)]="email" />
+    <input matInput placeholder="Email" name="email" [(ngModel)]="email" disabled/>
     <mat-hint *ngIf="isRequired(email) && !isEmail(email)">
       Please enter a valid email address
     </mat-hint>
